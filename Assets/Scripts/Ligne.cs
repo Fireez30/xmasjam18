@@ -13,7 +13,8 @@ public class Ligne : MonoBehaviour
     private float distance;
     private LineRenderer line;
     private bool vise;
-
+    public GameObject traineau;
+    public float thrust;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class Ligne : MonoBehaviour
         line = gameObject.GetComponent<LineRenderer>();
         distance = -3;
         vise = true;
+        traineau = GameObject.FindGameObjectWithTag("traineau");
     }
 
     // Update is called once per frame
@@ -42,8 +44,11 @@ public class Ligne : MonoBehaviour
         {
             Debug.Log("lance cadeau");
             present.transform.parent = null;
-            present.GetComponent<Rigidbody2D>().AddForce(new Vector3(distance, 0, 0));
+
+            Vector3 direction = (point2.transform.position - point1.transform.position);
+            direction.Normalize();
             present.GetComponent<Rigidbody2D>().isKinematic = false;
+            present.GetComponent<Rigidbody2D>().AddForce(new Vector3(-direction.x *distance* thrust, -direction.y*distance* thrust, 0));
             present = null;
             distance = -3;
             point2.transform.localPosition = new Vector3(0, distance, 0);

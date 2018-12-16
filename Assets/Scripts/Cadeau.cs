@@ -25,7 +25,7 @@ public class Cadeau : MonoBehaviour
             idChemine = collision.gameObject.GetComponent<Cheminee>().id;
             Debug.Log("collision cheminee");
         }
-        if (collision.gameObject.layer == 9 && collision.gameObject.GetComponent<Cadeau>().getCheminee()!=-1) //Si c'est un cadeau qui sera aspiré
+        if (collision.gameObject.tag == "present" && collision.gameObject.GetComponent<Cadeau>().getCheminee()!=-1) //Si c'est un cadeau qui sera aspiré
         {
             idChemine = collision.gameObject.GetComponent<Cadeau>().getCheminee();
             allAdjacent.Add(collision.gameObject);
