@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e430544c7c21304e9152fc63cbbd527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 100
+  score: 10
   idChemine: 0

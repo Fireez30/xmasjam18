@@ -10,10 +10,11 @@ public class Cheminee : MonoBehaviour
 
     private Parameters gm;
 
-    private void Awake()
+    private void Start()
     {
         id = nbInstances ++;
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent <Parameters>();
+        gm.addCheminee(this);
     }
 
     public void Absorb()

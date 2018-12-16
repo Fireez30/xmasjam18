@@ -7,17 +7,20 @@ public class Ligne : MonoBehaviour
 
     public List<GameObject> giftType;
     public float speedRotation, speedForce;
+    public GameObject traineau;
+    public float thrust;
 
     private GameObject present;
     private GameObject point1, point2;
     private float distance;
     private LineRenderer line;
     private bool vise;
-    public GameObject traineau;
-    public float thrust;
+    private int dir;
+
     // Start is called before the first frame update
     private void Awake()
     {
+        dir = -1;
         point1 = gameObject;
         point2 = gameObject.transform.GetChild(0).gameObject;
         line = gameObject.GetComponent<LineRenderer>();
@@ -29,10 +32,17 @@ public class Ligne : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (Input.GetButton("startForce") && distance > -10)
+        if (Input.GetButton("startForce") && distance <= -3 && distance >= -10)
         {
+            Debug.Log(distance + " " + dir);
+            distance += Time.fixedDeltaTime * speedForce * dir;
+            if (dir < 0)
+                distance = Mathf.Max(-9.999f, distance);
+            else
+                distance = Mathf.Min(-3.001f, distance);
+            if (distance >= -3.001f || distance <= -9.999f)
+                dir *= -1;
             traineau.GetComponent<LateralMovement>().moving = false;
-            distance -= Time.fixedDeltaTime * speedForce;
             if (present == null)
             {
                 int index = Random.Range(0, giftType.Count - 1);
@@ -41,7 +51,7 @@ public class Ligne : MonoBehaviour
             }
             point2.transform.localPosition = new Vector3(0, distance, 0);
         }
-        else if (!Input.GetButton("startForce") && distance < -3)
+        else if (!Input.GetButton("startForce") && distance < -3 && distance > -10)
         {
             this.GetComponent<AudioSource>().Play(0);
             Debug.Log("lance cadeau");

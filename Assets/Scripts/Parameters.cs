@@ -8,10 +8,12 @@ public class Parameters : MonoBehaviour
     public Text scoreText;
 
     private int score;
+    private List<Cheminee> allCheminee;
 
     // Start is called before the first frame update
     void Awake()
     {
+        allCheminee = new List<Cheminee>();
         score = 0;
         scoreText.text = "" + score;
         DontDestroyOnLoad(this.gameObject);
@@ -23,9 +25,19 @@ public class Parameters : MonoBehaviour
         
     }
 
+    public void addCheminee(Cheminee c)
+    {
+        allCheminee.Add(c);
+    }
+
     public void addSCore(int s)
     {
         score += s;
         scoreText.text = "" + score;
+    }
+
+    public Cheminee getCheminee(int id)
+    {
+        return allCheminee[id];
     }
 }

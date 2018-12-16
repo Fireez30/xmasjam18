@@ -5,10 +5,12 @@ using UnityEngine;
 public class Cadeau : MonoBehaviour
 {
     public int score;
+    public float rangeHor;
 
     private List<GameObject> allAdjacent;
     public int idChemine;
     private int multiplier;
+    private Parameters gm;
 
     // Start is called before the first frame update
     void Awake()
@@ -16,6 +18,7 @@ public class Cadeau : MonoBehaviour
         idChemine = -1;
         multiplier = 1;
         allAdjacent = new List<GameObject>();
+        gm = GameObject.FindWithTag("GameManager").GetComponent<Parameters>();
     }
 
     // Update is called once per frame
@@ -25,16 +28,9 @@ public class Cadeau : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8) //Si c'est une cheminée
-        {
-            idChemine = collision.gameObject.GetComponent<Cheminee>().id;
-            Debug.Log("collision cheminee");
-        }
         if (collision.gameObject.tag == "present" && collision.gameObject.GetComponent<Cadeau>().getCheminee()!=-1) //Si c'est un cadeau qui sera aspiré
         {
-            idChemine = collision.gameObject.GetComponent<Cadeau>().getCheminee();
             allAdjacent.Add(collision.gameObject);
-            Debug.Log("collision cadeau"+ "idchemine" + idChemine);
         }
     }
 
@@ -51,7 +47,9 @@ public class Cadeau : MonoBehaviour
             int id = go.GetComponent<Cadeau>().getCheminee();
             if (id != -1)
             {
-                idChemine = id;
+                Vector3 cheminee = gm.getCheminee(id).gameObject.transform.position;
+                if(gameObject.transform.position.x > cheminee.x - rangeHor && gameObject.transform.position.x < cheminee.x + rangeHor)
+                    idChemine = id;
             }
         }
     }
@@ -62,7 +60,10 @@ public class Cadeau : MonoBehaviour
         {
             allAdjacent.Remove(collision.gameObject);
         }
-
+        else if (collision.gameObject.layer == 8)
+        {
+            idChemine = -1;
+        }
     }
 
     public int getCheminee()
