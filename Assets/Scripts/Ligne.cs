@@ -20,6 +20,8 @@ public class Ligne : MonoBehaviour
     private LineRenderer line;
     private bool vise;
     private int dir;
+    public AudioSource jauge;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -39,6 +41,10 @@ public class Ligne : MonoBehaviour
     {
         if (Input.GetButton("startForce") && distance <= -3 && distance >= -10)
         {
+            if (!jauge.isPlaying)
+            {
+                jauge.Play();
+            }
             Debug.Log(distance + " " + dir);
             distance += Time.fixedDeltaTime * speedForce * dir;
             if (dir < 0)
@@ -58,6 +64,7 @@ public class Ligne : MonoBehaviour
         }
         else if (!Input.GetButton("startForce") && distance < -3 && distance > -10)
         {
+
             this.GetComponent<AudioSource>().Play(0);
             Debug.Log("lance cadeau");
             present.transform.parent = null;

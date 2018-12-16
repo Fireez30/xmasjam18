@@ -32,6 +32,10 @@ public class Cheminee : MonoBehaviour
             }
         }
         gm.addSCore(score);
+        if (!gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+        }
     }
 
     private void FixedUpdate()

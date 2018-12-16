@@ -32,6 +32,13 @@ public class Cadeau : MonoBehaviour
         {
             allAdjacent.Add(collision.gameObject);
         }
+        else if (collision.gameObject.layer == 8)
+        {
+            if (!gameObject.GetComponent<AudioSource>().isPlaying)
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

@@ -16,6 +16,13 @@ public class Explosif : MonoBehaviour
                 Destroy(c);
             }
         }
+        StartCoroutine(DestroyWhenPlayed());
+    }
+    public IEnumerator DestroyWhenPlayed()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+        yield return new WaitUntil(() => gameObject.GetComponent<AudioSource>().isPlaying == false);
         Destroy(this);
     }
+
 }
