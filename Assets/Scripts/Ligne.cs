@@ -21,8 +21,9 @@ public class Ligne : MonoBehaviour
     private bool vise;
     private int dir;
     public AudioSource jauge;
-
-
+    public SpriteRenderer anim;
+    public Sprite normal;
+    public Sprite colere;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class Ligne : MonoBehaviour
         distance = -3;
         vise = true;
         traineau = GameObject.FindGameObjectWithTag("traineau");
+        anim = traineau.GetComponent<SpriteRenderer>();
         setNextPresent();
     }
 

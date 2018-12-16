@@ -37,11 +37,13 @@ public class LateralMovement : MonoBehaviour
         {
             isAller = false;
             dir = new Vector3(-1, 0, 0);
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
         else if (gameObject.transform.position.x < startPoint.x + 0.1 && !isAller)
         {
             isAller = true;
             dir = new Vector3(1, 0, 0);
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         // Debug.Log(dir);

@@ -8,6 +8,7 @@ TagManager:
   - point
   - present
   - traineau
+  - scoremem
   layers:
   - Default
   - TransparentFX

@@ -124,8 +124,8 @@ GameObject:
   - component: {fileID: 604823696}
   - component: {fileID: 604823695}
   - component: {fileID: 604823694}
-  - component: {fileID: 604823693}
   - component: {fileID: 604823692}
+  - component: {fileID: 604823693}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -238,12 +238,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 604823691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d364aff052eb2479625c44df0f2a63, type: 3}
+  m_Script: {fileID: 11500000, guid: 672e93ec662783c4ead944d4295511d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 1175747512}
-  retry: {fileID: 0}
-  quit: {fileID: 0}
+  retry: {fileID: 1945288407}
+  quit: {fileID: 1185560478}
 --- !u!114 &604823694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1176207545
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1720359458
 CanvasRenderer:
   m_ObjectHideFlags: 0

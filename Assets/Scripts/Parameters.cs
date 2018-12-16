@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Parameters : MonoBehaviour
 {
@@ -23,7 +24,6 @@ public class Parameters : MonoBehaviour
         allCheminee = new List<Cheminee>();
         score = 0;
         scoreText.text = "" + score;
-        DontDestroyOnLoad(this.gameObject);
         timeLeft = 120f;
         played = false;
     }
@@ -45,17 +45,11 @@ public class Parameters : MonoBehaviour
         {
             foreach (Cheminee c in allCheminee)
             {
+                c.multiplier += 3;
                 c.Absorb();
-;            }
-            fin.SetActive(true);
-            finalscore.text = score + "";
-            if (!played)
-            {
-                zic.Stop();
-                timer.Play();
-                played = true;
-                Camera.main.GetComponent<AudioListener>().enabled = false;
-            }
+;           }
+            GameObject.FindGameObjectWithTag("scoremem").GetComponent<KeepScore>().score = this.score;
+            SceneManager.LoadScene(2);
         }
     }
 
@@ -68,6 +62,11 @@ public class Parameters : MonoBehaviour
     {
         score += s;
         scoreText.text = "" + score;
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
     public Cheminee getCheminee(int id)

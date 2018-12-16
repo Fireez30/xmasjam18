@@ -21,6 +21,7 @@ public class Explosif : MonoBehaviour
     public IEnumerator DestroyWhenPlayed()
     {
         gameObject.GetComponent<AudioSource>().Play();
+        gameObject.GetComponent<Animator>().SetBool("Explode", true);
         yield return new WaitUntil(() => gameObject.GetComponent<AudioSource>().isPlaying == false);
         Destroy(this);
     }

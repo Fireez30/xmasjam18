@@ -10,13 +10,13 @@ public class finJeu : MonoBehaviour
     public Text score;
     public Button retry, quit;
 
-    private Parameters gm;
+    private KeepScore gm;
 
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Parameters>();
-        score.text = "" + gm.getScore();
+        gm = GameObject.FindGameObjectWithTag("scoremem").GetComponent<KeepScore>();
+        score.text = "" + gm.score;
         retry.onClick.AddListener(() => reloadGame());
         quit.onClick.AddListener(() => quitGame());
     }
