@@ -107,6 +107,11 @@ public class Cadeau : MonoBehaviour
 
     public int getScore()
     {
-        return score * multiplier;
+        if(gameObject.transform.position.y >= 4)
+            return score * multiplier * 2;
+        else if (gameObject.transform.position.y >= 2)
+            return score * multiplier * 3;
+        else
+            return score * multiplier;
     }
 }
