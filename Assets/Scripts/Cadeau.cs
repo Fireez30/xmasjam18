@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Cadeau : MonoBehaviour
 {
-    public int idChemine;
+    public int score;
+
     private List<GameObject> allAdjacent;
+    private int idChemine;
+    private int multiplier;
+
     // Start is called before the first frame update
     void Awake()
     {
         idChemine = -1;
+        multiplier = 1;
         allAdjacent = new List<GameObject>();
     }
 
@@ -57,5 +62,15 @@ public class Cadeau : MonoBehaviour
     public int getCheminee()
     {
         return idChemine;
+    }
+
+    public void setMultiplier(int i)
+    {
+        multiplier = i;
+    }
+
+    public int getScore()
+    {
+        return score * multiplier;
     }
 }
