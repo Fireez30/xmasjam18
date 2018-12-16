@@ -64,7 +64,6 @@ public class Cadeau : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             idChemine = collision.gameObject.GetComponent<Cheminee>().id;
-
         }
         foreach (GameObject go in allAdjacent)
         {
@@ -83,10 +82,6 @@ public class Cadeau : MonoBehaviour
         if (collision.gameObject.tag == "present")
         {
             allAdjacent.Remove(collision.gameObject);
-        }
-        else if (collision.gameObject.layer == 8)
-        {
-            idChemine = -1;
         }
     }
 
