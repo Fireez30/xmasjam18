@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class Cheminee : MonoBehaviour
 {
+    public static int nbInstances = 0;
     public int id;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        id = nbInstances ++;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Absorb()
     {
-        
+        GameObject[] presents = GameObject.FindGameObjectsWithTag("present");
+        Debug.Log("NbCadeau = " + presents.Length + " id cheminee = " + id);
+        foreach (GameObject present in presents)
+        {
+            if (present.GetComponent<Cadeau>().getCheminee() == id)
+            {
+                //get score
+                Destroy(present);
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetButton("clear"))
+        {
+            Absorb();
+        }
     }
 }

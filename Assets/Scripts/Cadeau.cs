@@ -23,15 +23,19 @@ public class Cadeau : MonoBehaviour
         if (collision.gameObject.layer == 8) //Si c'est une cheminée
         {
             idChemine = collision.gameObject.GetComponent<Cheminee>().id;
+            Debug.Log("collision cheminee");
         }
         if (collision.gameObject.layer == 9 && collision.gameObject.GetComponent<Cadeau>().getCheminee()!=-1) //Si c'est un cadeau qui sera aspiré
         {
             idChemine = collision.gameObject.GetComponent<Cadeau>().getCheminee();
             allAdjacent.Add(collision.gameObject);
+            Debug.Log("collision cadeau"+ "idchemine" + idChemine);
+
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
+        //Debug.Log(" exit idChemine : " + idChemine);
         if (collision.gameObject.layer == 8)
             idChemine = -1;
         else
@@ -47,6 +51,7 @@ public class Cadeau : MonoBehaviour
                 }
             }
         }
+
     }
 
     public int getCheminee()

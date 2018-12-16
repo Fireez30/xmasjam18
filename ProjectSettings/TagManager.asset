@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - point
+  - present
   layers:
   - Default
   - TransparentFX

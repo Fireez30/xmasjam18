@@ -30,7 +30,7 @@ public class LateralMovement : MonoBehaviour
             dir = new Vector3(1, 0, 0);
         }
 
-        Debug.Log(dir);
+       // Debug.Log(dir);
         gameObject.transform.position += dir * Time.fixedDeltaTime * speed;
     }
 
