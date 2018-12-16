@@ -1,0 +1,4 @@
+-> initial a chaque cadeau (selon la taille)
+-> selon la hauteur 
+-> selon la cheminée 
+-> selon le temps en jeu (+ on avance dans le temps + il vaut de point mais + le traineau va vite)

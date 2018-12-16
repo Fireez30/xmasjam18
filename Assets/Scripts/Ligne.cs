@@ -8,6 +8,7 @@ public class Ligne : MonoBehaviour
     public List<GameObject> giftType;
     public float speedRotation, speedForce;
 
+    private GameObject present;
     private GameObject point1, point2;
     private float distance;
     private LineRenderer line;
@@ -29,11 +30,21 @@ public class Ligne : MonoBehaviour
         if (Input.GetButton("startForce") && distance > -10)
         {
             distance -= Time.fixedDeltaTime * speedForce;
+            if (present == null)
+            {
+                int index = Random.Range(0, giftType.Count - 1);
+                present = Instantiate(giftType[index], point1.transform);
+                present.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
             point2.transform.localPosition = new Vector3(0, distance, 0);
         }
         else if (!Input.GetButton("startForce") && distance < -3)
         {
             Debug.Log("lance cadeau");
+            present.transform.parent = null;
+            present.GetComponent<Rigidbody2D>().AddForce(new Vector3(distance, 0, 0));
+            present.GetComponent<Rigidbody2D>().isKinematic = false;
+            present = null;
             distance = -3;
             point2.transform.localPosition = new Vector3(0, distance, 0);
         }
