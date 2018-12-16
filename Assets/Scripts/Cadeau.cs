@@ -38,23 +38,30 @@ public class Cadeau : MonoBehaviour
 
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        idChemine = -1;
+        if (collision.gameObject.layer == 8)
+        {
+            idChemine = collision.gameObject.GetComponent<Cheminee>().id;
+
+        }
+        foreach (GameObject go in allAdjacent)
+        {
+            int id = go.GetComponent<Cadeau>().getCheminee();
+            if (id != -1)
+            {
+                idChemine = id;
+            }
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //Debug.Log(" exit idChemine : " + idChemine);
-        if (collision.gameObject.layer == 8)
-            idChemine = -1;
-        else
+        if (collision.gameObject.tag == "present")
         {
             allAdjacent.Remove(collision.gameObject);
-            idChemine = -1;
-            foreach(GameObject go in allAdjacent)
-            {
-                int id = go.GetComponent<Cadeau>().getCheminee();
-                if (id != -1)
-                {
-                    idChemine = id;
-                }
-            }
         }
 
     }
