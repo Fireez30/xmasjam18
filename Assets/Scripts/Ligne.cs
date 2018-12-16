@@ -31,6 +31,7 @@ public class Ligne : MonoBehaviour
     {
         if (Input.GetButton("startForce") && distance > -10)
         {
+            traineau.GetComponent<LateralMovement>().moving = false;
             distance -= Time.fixedDeltaTime * speedForce;
             if (present == null)
             {
@@ -42,9 +43,10 @@ public class Ligne : MonoBehaviour
         }
         else if (!Input.GetButton("startForce") && distance < -3)
         {
+            this.GetComponent<AudioSource>().Play(0);
             Debug.Log("lance cadeau");
             present.transform.parent = null;
-
+            traineau.GetComponent<LateralMovement>().moving = true;
             Vector3 direction = (point2.transform.position - point1.transform.position);
             direction.Normalize();
             present.GetComponent<Rigidbody2D>().isKinematic = false;

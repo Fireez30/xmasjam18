@@ -9,12 +9,16 @@ public class LateralMovement : MonoBehaviour
     public float speed;
     public Vector3 dir;
     public bool isAller;
+    public bool moving;
+    public AudioSource a;
     // Update is called once per frame
 
     private void Awake()
     {
         dir = new Vector3(1, 0, 0);
         isAller = true;
+        moving = true;
+        a = gameObject.GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -30,8 +34,23 @@ public class LateralMovement : MonoBehaviour
             dir = new Vector3(1, 0, 0);
         }
 
-       // Debug.Log(dir);
-        gameObject.transform.position += dir * Time.fixedDeltaTime * speed;
+        // Debug.Log(dir);
+        if (moving)
+        {
+            gameObject.transform.position += dir * Time.fixedDeltaTime * speed;
+            if (!a.isPlaying)
+            {
+                a.Play(0);
+            }
+
+        }
+        else
+        {
+            if (a.isPlaying)
+            {
+                a.Stop();
+            }
+        }
     }
 
 }
