@@ -45,7 +45,7 @@ public class Ligne : MonoBehaviour
             traineau.GetComponent<LateralMovement>().moving = false;
             if (present == null)
             {
-                int index = Random.Range(0, giftType.Count - 1);
+                int index = Random.Range(0, giftType.Count);
                 present = Instantiate(giftType[index], point1.transform);
                 present.GetComponent<Rigidbody2D>().isKinematic = true;
             }
