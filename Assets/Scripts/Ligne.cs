@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ligne : MonoBehaviour
 {
 
     public List<GameObject> giftType;
+    public List<Sprite> giftSprite;
     public float speedRotation, speedForce;
     public GameObject traineau;
     public float thrust;
+    public Image spriteNext;
 
     private GameObject present;
+    private int nextPresent;
     private GameObject point1, point2;
     private float distance;
     private LineRenderer line;
@@ -27,6 +31,7 @@ public class Ligne : MonoBehaviour
         distance = -3;
         vise = true;
         traineau = GameObject.FindGameObjectWithTag("traineau");
+        setNextPresent();
     }
 
     // Update is called once per frame
@@ -45,9 +50,9 @@ public class Ligne : MonoBehaviour
             traineau.GetComponent<LateralMovement>().moving = false;
             if (present == null)
             {
-                int index = Random.Range(0, giftType.Count);
-                present = Instantiate(giftType[index], point1.transform);
+                present = Instantiate(giftType[nextPresent], point1.transform);
                 present.GetComponent<Rigidbody2D>().isKinematic = true;
+                setNextPresent();
             }
             point2.transform.localPosition = new Vector3(0, distance, 0);
         }
@@ -75,5 +80,14 @@ public class Ligne : MonoBehaviour
         }
         line.SetPosition(0, point1.transform.position);
         line.SetPosition(1, point2.transform.position);
+    }
+
+    private void setNextPresent()
+    {
+        nextPresent = Random.Range(0, giftType.Count);
+        if(nextPresent != giftType.Count-1)
+            spriteNext.sprite = giftSprite[nextPresent];
+        else
+            spriteNext.sprite = giftSprite[Random.Range(0, giftSprite.Count)];
     }
 }
