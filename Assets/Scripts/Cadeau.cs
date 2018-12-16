@@ -35,7 +35,6 @@ public class Cadeau : MonoBehaviour
             idChemine = collision.gameObject.GetComponent<Cadeau>().getCheminee();
             allAdjacent.Add(collision.gameObject);
             Debug.Log("collision cadeau"+ "idchemine" + idChemine);
-
         }
     }
 
