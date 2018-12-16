@@ -7,7 +7,7 @@ public class Cadeau : MonoBehaviour
     public int score;
 
     private List<GameObject> allAdjacent;
-    private int idChemine;
+    public int idChemine;
     private int multiplier;
 
     // Start is called before the first frame update
