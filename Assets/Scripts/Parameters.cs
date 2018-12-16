@@ -15,6 +15,8 @@ public class Parameters : MonoBehaviour
     public bool played;
     public AudioSource zic;
 
+    public Text finalscore;
+    public GameObject fin;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,12 +43,18 @@ public class Parameters : MonoBehaviour
 
         if (timeLeft < 0f)
         {
-            Time.timeScale = 0;
+            foreach (Cheminee c in allCheminee)
+            {
+                c.Absorb();
+;            }
+            fin.SetActive(true);
+            finalscore.text = score + "";
             if (!played)
             {
                 zic.Stop();
                 timer.Play();
                 played = true;
+                Camera.main.GetComponent<AudioListener>().enabled = false;
             }
         }
     }

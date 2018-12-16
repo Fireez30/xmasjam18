@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 586759741567857004}
   - component: {fileID: 7221076312401256031}
   - component: {fileID: 5249750751221444523}
+  - component: {fileID: 2562213735186092313}
   m_Layer: 9
   m_Name: cadeau grenade
   m_TagString: present
@@ -145,7 +146,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ce405dfbe33656a4696d81c12e1cf17f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e63bc45fc772c5d4fbf55002bb63c18f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.446
   m_Pitch: 1
@@ -231,3 +232,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2562213735186092313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586759741567856995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e816309c2f74e4191b2acd5add081b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
