@@ -11,6 +11,11 @@ public class LateralMovement : MonoBehaviour
     public bool isAller;
     public bool moving;
     public AudioSource a;
+    public Parameters gm;
+    public float time;
+    public bool done90;
+    public bool done60;
+    public bool done30;
     // Update is called once per frame
 
     private void Awake()
@@ -19,10 +24,15 @@ public class LateralMovement : MonoBehaviour
         isAller = true;
         moving = true;
         a = gameObject.GetComponent<AudioSource>();
+        gm = GameObject.FindWithTag("GameManager").GetComponent<Parameters>();
+        done90 = false;
+        done60 = false;
+        done30 = false;
     }
 
     private void FixedUpdate()
     {
+        time = gm.timeLeft;
         if(gameObject.transform.position.x > endPoint.x - 0.1 && isAller)
         {
             isAller = false;
@@ -50,6 +60,22 @@ public class LateralMovement : MonoBehaviour
             {
                 a.Stop();
             }
+        }
+
+        if (time < 30 && !done30)
+        {
+            done30 = true;
+            speed += 0.5f;
+        }
+        else if (time < 60 && !done60)
+        {
+            done60 = true;
+            speed += 0.5f;
+        }
+        else if (time < 90 && !done90)
+        {
+            done90 = true;
+            speed += 0.5f;
         }
     }
 

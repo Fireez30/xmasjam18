@@ -19,6 +19,23 @@ public class Cadeau : MonoBehaviour
         multiplier = 1;
         allAdjacent = new List<GameObject>();
         gm = GameObject.FindWithTag("GameManager").GetComponent<Parameters>();
+        float time = gm.timeLeft;
+        if (time < 30)
+        {
+            multiplier += 4;
+        }
+        else if (time < 60)
+        {
+            multiplier += 3;
+        }
+        else if (time < 90)
+        {
+            multiplier += 2;
+        }
+        else if (time < 121)
+        {
+            multiplier += 1;
+        }
     }
 
     // Update is called once per frame
@@ -81,6 +98,11 @@ public class Cadeau : MonoBehaviour
     public void setMultiplier(int i)
     {
         multiplier = i;
+    }
+
+    public void addMultiplier(int i)
+    {
+        multiplier += i;
     }
 
     public int getScore()

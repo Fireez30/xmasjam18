@@ -31,6 +31,7 @@ public class Cheminee : MonoBehaviour
                 Destroy(present);
             }
         }
+        score *= multiplier;
         gm.addSCore(score);
         if (!gameObject.GetComponent<AudioSource>().isPlaying)
         {
